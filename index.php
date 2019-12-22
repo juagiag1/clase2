@@ -31,6 +31,11 @@
                   Formulario enviado con éxito!
               </div>';
           break;
+        case 'ko':
+          echo '<div class="alert alert-danger" role="alert">
+                  Se ha detectado un error, vuelve a enviar el formulario.
+              </div>';
+          break;
         
         default:
           break;
