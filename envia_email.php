@@ -16,19 +16,13 @@ if (!isset($_POST['conditions'])) {
 		$mail = new PHPMailer();
 
 		//Luego tenemos que iniciar la validación por SMTP:
-		$mail->IsSMTP(); //Usar SMTP
-		$mail->SMTPAuth = true; // Usar autentificación 
-		$mail->Host = "mail.carlosgimeno.es"; // SMTP a utilizar. Por ej. smtp.elserver.com
-		$mail->Username = "ifab@carlosgimeno.es"; // Correo completo a utilizar
-		$mail->Password = "4Bies#51"; // Contraseña
-		$mail->Port = 25; // Puerto a utilizar
-		$mail->SMTPOptions = array(
-		    'ssl' => array(
-		    'verify_peer' => false,
-		    'verify_peer_name' => false,
-		    'allow_self_signed' => true
-		    )
-		);
+		$mail->IsSMTP();
+		$mail->Host = 'ssl://smtp.gmail.com';
+		$mail->Port = 465;
+		$mail->SMTPAuth = true;
+		$mail->Username = 'ifabphpclass@gmail.com';
+		$mail->Password = 'alumnOifab2020';
+
 
 		//Con estas pocas líneas iniciamos una conexión con el SMTP. Lo que ahora deberíamos hacer, es configurar el mensaje a enviar, el //From, etc.
 		$mail->From = "noreply@ifab.com"; // Desde donde enviamos (Para mostrar)

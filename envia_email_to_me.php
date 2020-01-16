@@ -16,26 +16,18 @@ if (!isset($_POST['conditions'])) {
 		$mail = new PHPMailer();
 
 		//Luego tenemos que iniciar la validación por SMTP:
-		$mail->IsSMTP(); //Usar SMTP
-		$mail->SMTPAuth = true; // Usar autentificación 
-		$mail->Host = "mail.carlosgimeno.es"; // SMTP a utilizar. Por ej. smtp.elserver.com
-		$mail->Username = "ifab@carlosgimeno.es"; // Correo completo a utilizar
-		$mail->Password = "4Bies#51"; // Contraseña
-		$mail->Port = 25; // Puerto a utilizar
-		$mail->SMTPOptions = array(
-		    'ssl' => array(
-		    'verify_peer' => false,
-		    'verify_peer_name' => false,
-		    'allow_self_signed' => true
-		    )
-		);
+		$mail->Host = 'ssl://smtp.gmail.com';
+		$mail->Port = 465;
+		$mail->SMTPAuth = true;
+		$mail->Username = 'ifabphpclass@gmail.com';
+		$mail->Password = 'alumnOifab2020';
 
 		//Con estas pocas líneas iniciamos una conexión con el SMTP. Lo que ahora deberíamos hacer, es configurar el mensaje a enviar, el //From, etc.
 		$mail->From = $_POST['email']; // Desde donde enviamos (Para mostrar)
 		$mail->FromName = ""; // Nombre que aparecera en el correo.
 
 		//Estas dos líneas, cumplirían la función de encabezado (En mail() usado de esta forma: “From: Nombre <correo@dominio.com>”) de //correo.
-		$mail->AddAddress("tu@correo.com"); // Esta es la dirección a donde enviamos
+		$mail->AddAddress("rosama.tin@hotmail.com"); // Esta es la dirección a donde enviamos
 		$mail->IsHTML(true); // El correo se envía como HTML
 		$mail->Subject = "Consulta nombre de mi web"; // Este es el titulo del email.
 		$body .="<!DOCTYPE html><html lang='es'>"
