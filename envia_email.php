@@ -2,7 +2,6 @@
 if (!isset($_POST['conditions'])) {
 	header("Location:index.php?envia=error_cond");
 }else{
-	$email_to = "carlos@carlosgimeno.es";
 // Aquí se deberían validar los datos ingresados por el usuario
 	if($_POST['name'] == "" ||
 	$_POST['phone'] == "" ||
@@ -17,11 +16,22 @@ if (!isset($_POST['conditions'])) {
 
 		//Luego tenemos que iniciar la validación por SMTP:
 		$mail->IsSMTP();
+		$mail->SMTPAuth = true; // Usar autentificación 
 		$mail->Host = 'ssl://smtp.gmail.com';
 		$mail->Port = 465;
-		$mail->SMTPAuth = true;
 		$mail->Username = 'ifabphpclass@gmail.com';
 		$mail->Password = 'alumnOifab2020';
+		$mail->SMTPOptions = array(
+		    'ssl' => array(
+		        'verify_peer' => false,
+		        'verify_peer_name' => false,
+		        'allow_self_signed' => true
+		    )
+		);
+
+		$mail->setFrom('noreply@ifab.com', 'NoReply IFAB');//Aquí sustituimos la verdadera cuenta por la que queremos que aprezca, GMAIL lo sobreescribe con la cuenta verdadera desde donde se envía, por lo que no funciona.
+
+		$mail->addReplyTo('noreply@ifab.com', 'NoReply IFAB');//Sin embargo, podemos poner este código para que cuando le de el usuario a responder le salga la cuenta que queremos y no la gmail.
 
 
 		//Con estas pocas líneas iniciamos una conexión con el SMTP. Lo que ahora deberíamos hacer, es configurar el mensaje a enviar, el //From, etc.
